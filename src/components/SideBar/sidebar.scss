@@ -1,0 +1,19 @@
+$width-sidebar : 270px;
+$topNavbarHeight:56px;
+$bs-dark-rgb: rgb(33,37,41);
+$bs-bg-opacity: 1;
+.sidebar{
+    width: $width-sidebar !important;
+    background-color: rgba($bs-dark-rgb,$bs-bg-opacity);
+    height: 100vh;
+    &__menu{
+
+        &__item{
+            background-color: red;
+            
+            &__inner{
+                display: flex;
+            }
+        }
+    }
+}
