@@ -1,5 +1,8 @@
 import { Suspense } from "react";
-import { RouterProvider } from "react-router-dom";
+import { Route, RouterProvider, Routes } from "react-router-dom";
+import Admin from "./components/AdminLayout/Admin";
+import MovieAdmin from "./modules/Admin/MovieAdmin";
+import UserAdmin from "./modules/Admin/UserAdmin/UserAdmin";
 import routes from "./routers/routes";
 
 function App() {

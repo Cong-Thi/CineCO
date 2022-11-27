@@ -5,14 +5,29 @@ $bs-bg-opacity: 1;
 .sidebar{
     width: $width-sidebar !important;
     background-color: rgba($bs-dark-rgb,$bs-bg-opacity);
-    height: 100vh;
+    min-height: 100vh;
     &__menu{
-
         &__item{
-            background-color: red;
-            
+            text-decoration: none;
+            color: white;
+           
             &__inner{
                 display: flex;
+                padding:30px;
+                &:hover{
+                    background-color: #1a83ff;
+                    color: white;
+                }
+                .sidebar__icon{
+                    margin-right: 10px;
+                    svg{
+                        padding-bottom: 5px;
+                        font-size: 20px;
+                    }
+                }
+                // &.active{
+                //     background-color: #1a83ff;
+                // }
             }
         }
     }

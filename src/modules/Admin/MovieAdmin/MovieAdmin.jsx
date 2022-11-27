@@ -2,7 +2,9 @@ import React from 'react'
 
 const MovieAdmin = () => {
   return (
-    <div>MovieAdmin</div>
+    <div className='movie-admin'>
+      <h1>MovieAdmin</h1>
+    </div>
   )
 }
 
