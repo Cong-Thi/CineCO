@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import usersAPI from "../../../service/usersManagementAPI"
 //react-bootstrap
-import { Button, Form, InputGroup, Table } from 'react-bootstrap'
+import { Button, Form, InputGroup, Modal, Nav, NavLink, Table } from 'react-bootstrap'
 import { FaSearch } from 'react-icons/fa'
+import {FaRegEdit} from 'react-icons/fa'
+import {BsTrash} from 'react-icons/bs'
 import ReactPaginate from 'react-paginate';
 //scss
 import "./userAdmin.scss"
+import { Link } from 'react-router-dom'
+import UserModal from '../../../components/UserModal/UserModal'
 const UserAdmin = () => {
   const [users, setUser] = useState([])
   const [itemOffset, setItemOffset] = useState(0);
@@ -18,14 +22,19 @@ const UserAdmin = () => {
 
 
   const [searchValue, setSearchValue] = useState("")
-  const keys = ["taiKhoan", "email", "hoTen"]
+  const keys = ["taiKhoan", "email", "hoTen", "soDT"]
   const handleSearch = () => {
-    const newUserSearch = users.filter((item) => keys.some((key)=>item[key].toLowerCase().includes(searchValue)))
-    setUserSearch(newUserSearch)
+    const newUserSearch = users.filter((item) => keys.some((key)=>item[key]?.toLowerCase().includes(searchValue) || null))
+    setUserSearch(newUserSearch)  
   }
   const endOffset = itemOffset + itemsPerPage;
   const currentItems =userSearch.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(userSearch.length / itemsPerPage);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handlePageClick = (event) => {
     setNumpage(event.selected)
@@ -58,7 +67,7 @@ const UserAdmin = () => {
               placeholder="Tìm Kiếm..."
               aria-label="search"
               aria-describedby="basic-addon1"
-              onChange = {(e)=> setUserSearch(e.target.value)}
+              onChange = {(e)=> setSearchValue(e.target.value)}
             />
             <Button 
             onClick={()=> handleSearch()}
@@ -66,9 +75,11 @@ const UserAdmin = () => {
             <FaSearch />
             </Button>
           </InputGroup>
-          <Button className='btn-add'>
+          <Button className='btn-add' onClick={handleShow}>
             Thêm người dùng
           </Button>
+          <UserModal show={show} handleClose={handleClose}/>
+          
         </div>
         <Table bordered hover>
       <thead>
@@ -91,6 +102,13 @@ const UserAdmin = () => {
             <th>{user.email}</th>
             <th>{user.soDT}</th>
             <th>{user.maLoaiNguoiDung}</th>
+            <th className="row">
+              <Link className="text-primary col-6" herf="/admin"><FaRegEdit/></Link>
+              <Link  className="text-danger col-6" herf="/admin"><BsTrash/></Link>
+              </th>
+
+              
+            
           </tr>
         ))}
       </tbody>
