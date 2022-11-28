@@ -8,6 +8,9 @@ const usersManagementAPI = {
       },
     });
   },
+  addUser: (user) => {
+    return fetcher.post("QuanLyNguoiDung/ThemNguoiDung", user);
+  },
 };
 
 export default usersManagementAPI;
