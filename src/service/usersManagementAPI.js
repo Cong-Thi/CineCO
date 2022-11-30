@@ -8,8 +8,21 @@ const usersManagementAPI = {
       },
     });
   },
+
   addUser: (user) => {
     return fetcher.post("QuanLyNguoiDung/ThemNguoiDung", user);
+  },
+
+  updateUser: (user) => {
+    return fetcher.post("QuanLyNguoiDung/CapNhatThongTinNguoiDung", user);
+  },
+
+  deleteUser: (id) => {
+    return fetcher.delete("QuanLyNguoiDung/XoaNguoiDung", {
+      params: {
+        TaiKhoan: id,
+      },
+    });
   },
 };
 
