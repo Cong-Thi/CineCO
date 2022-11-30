@@ -1,0 +1,85 @@
+.header {
+    background-image: linear-gradient(to right,#27001f,#4a0042,#27001f);
+    padding: 20px 0px;
+    
+    .mantine-10nsg3v{
+        display: flex;
+        justify-content:flex-end;
+        align-items: center;
+
+        .logo{
+            width: 20%;
+        }
+        .menu{
+            width: 70%;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            
+
+            .link__home{
+                height: 50px;
+                width: 50px;
+                background-color: #e00d7a;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 50px;
+                font-size: 25px;
+            }
+            .nav__menu{
+                padding: 3px;
+                border: 1px solid #e00d7a;
+                border-radius: 30px;
+                -webkit-border-radius: 30px;
+                text-transform: uppercase;
+                margin: 0 20px;
+
+                ul{
+                    background-color: #e00d7a;
+                    border-radius: 30px;
+                    padding: 1px;
+                    -webkit-border-radius: 30px;
+                    list-style: none;
+                    display: flex;
+
+                    li{
+                        padding: 10px;  
+                    }
+                    li:first-child{
+                        background-color: #f18720;
+                        border-radius: 30px 0 0 30px;
+                        -webkit-border-radius: 30px 0 0 30px;
+                        padding: 10px;
+
+                        &:hover{
+                        border-radius: 30px 0 0 30px;
+                        -webkit-border-radius: 30px 0 0 30px;
+                        }
+                    }
+                    li:last-child{
+                        
+
+                        &:hover{
+                        border-radius: 0px 30px 30px 0px;
+                        -webkit-border-radius: 0px 30px 30px 0px;
+                        }
+                    }
+                    li:hover{
+                        background-color: #f18720;
+                        border-radius: 0px 0 0 0px;
+                        -webkit-border-radius: 0px 0 0 0px;
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+        .account{
+            background-color: #f18720;
+            border-radius: 30px;
+            padding: 10px;
+            width: 10%;
+        }
+    }
+
+    
+}
