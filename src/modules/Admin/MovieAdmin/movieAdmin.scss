@@ -18,5 +18,21 @@
         }
         
       }
+      .pagination{
+        list-style: none;
+        justify-content: center;
+        align-items: center;
+        .page-num{
+          padding:1px 15px;
+          text-decoration: none;
+          &:hover{
+            background-color: #70a6f6;
+            color:white;
+          }
+        }
+        .selected{
+          background-color: #70a6f6;
+        }
+      }
     }
   }

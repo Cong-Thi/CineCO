@@ -88,7 +88,7 @@ const MovieAdmin = () => {
                   <img src={movie.hinhAnh} alt={movie.tenPhim} width={50} />
                 </th>
                 <th>{movie.ngayKhoiChieu}</th>
-                <th className="row">
+                <th className="btn-group row">
                   <Button
                     variant="outline-primary"
                     className="col-5 m-1"
