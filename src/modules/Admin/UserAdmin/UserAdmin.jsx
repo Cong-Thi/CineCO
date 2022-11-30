@@ -71,6 +71,7 @@ const UserAdmin = () => {
   }
 
   const handleUpdate = (userDetail) => {
+    console.log(userDetail);
     setUserDetail(userDetail);
     setShow(true);
     setIsUpdate(true);

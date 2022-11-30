@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo } from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import React, { useEffect, useMemo } from "react";
+import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import usersManagementAPI from '../../service/usersManagementAPI';
+import usersManagementAPI from "../../service/usersManagementAPI";
 
-
-import "./userModal.scss"
+import "./userModal.scss";
 
 const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
   const {
@@ -19,24 +18,23 @@ const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
           taiKhoan: userDetail.taiKhoan,
           matKhau: userDetail.matKhau,
           email: userDetail.email,
-          soDt: userDetail.soDT,
-          maNhom: "GP01",
+          soDT: userDetail.soDT,
           maLoaiNguoiDung: userDetail.maLoaiNguoiDung,
           hoTen: userDetail.hoTen,
-        }
+        };
       } else {
         return {
           taiKhoan: "",
           matKhau: "",
           email: "",
-          soDt: "",
-          maNhom: "GP01",
+          soDT: "",
           maLoaiNguoiDung: "",
           hoTen: "",
-        }
-      };
-    }, [userDetail]), mode: "onTouched",
-  })
+        };
+      }
+    }, [userDetail]),
+    mode: "onTouched",
+  });
 
   useEffect(() => {
     reset(userDetail);
@@ -44,14 +42,22 @@ const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
 
   const onSubmit = async (values) => {
     try {
+      const newValues = {
+        taiKhoan: values.taiKhoan,
+        matKhau: values.matKhau,
+        email: values.email,
+        soDt: values.soDT,
+        maNhom: "GP01",
+        maLoaiNguoiDung: values.maLoaiNguoiDung,
+        hoTen: values.hoTen,
+      };
       if (isUpdate) {
-        await usersManagementAPI.updateUser(values);
+        await usersManagementAPI.updateUser(newValues);
       } else {
-        await usersManagementAPI.addUser(values);
+        await usersManagementAPI.addUser(newValues);
       }
 
       handleClose();
-
     } catch (error) {
       console.log(error);
     }
@@ -60,13 +66,20 @@ const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
     <div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{isUpdate ? "Cập nhật người dùng" : "Thêm người dùng"}</Modal.Title>
+          <Modal.Title>
+            {isUpdate ? "Cập nhật người dùng" : "Thêm người dùng"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form >
+          <form>
             <label htmlFor="taiKhoan">Tài Khoản</label>
-            <div className={`user-form-control ${errors.taiKhoan ? "errorInput" : ""}`}>
-              <input type="text"
+            <div
+              className={`user-form-control ${
+                errors.taiKhoan ? "errorInput" : ""
+              }`}
+            >
+              <input
+                type="text"
                 placeholder="Tên đăng nhập"
                 {...register("taiKhoan", {
                   required: "Không được để trống",
@@ -81,8 +94,13 @@ const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
               <p className="errorMessage">{errors.taiKhoan.message}</p>
             )}
             <label htmlFor="matKhau">Mật Khẩu</label>
-            <div className={`user-form-control ${errors.matKhau ? "errorInput" : ""}`}>
-              <input type="text"
+            <div
+              className={`user-form-control ${
+                errors.matKhau ? "errorInput" : ""
+              }`}
+            >
+              <input
+                type="text"
                 placeholder="Mật khẩu"
                 {...register("matKhau", {
                   required: "Không được để trống",
@@ -91,14 +109,20 @@ const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
                     message:
                       "Mật khẩu phải dài ít nhất 8 ký tự, gồm tối thiểu 1 ký tự hoa, 1 ký tự thường và 1 ký tự số",
                   },
-                })} />
+                })}
+              />
             </div>
             {errors.matKhau && (
               <p className="errorMessage">{errors.matKhau.message}</p>
             )}
             <label htmlFor="email">Email</label>
-            <div className={`user-form-control ${errors.email ? "errorInput" : ""}`}>
-              <input type="email"
+            <div
+              className={`user-form-control ${
+                errors.email ? "errorInput" : ""
+              }`}
+            >
+              <input
+                type="email"
                 placeholder="Email"
                 {...register("email", {
                   required: "Không được để trống",
@@ -106,14 +130,20 @@ const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
                     value: /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/,
                     message: "Email không hợp lệ",
                   },
-                })} />
+                })}
+              />
             </div>
-            {errors.email && <p className="errorMessage">{errors.email.message}</p>}
-            <label htmlFor="soDt">Số Điện Thoại</label>
-            <div className={`user-form-control ${errors.soDt ? "errorInput" : ""}`}>
-              <input type="text"
+            {errors.email && (
+              <p className="errorMessage">{errors.email.message}</p>
+            )}
+            <label htmlFor="soDT">Số Điện Thoại</label>
+            <div
+              className={`user-form-control ${errors.soDT ? "errorInput" : ""}`}
+            >
+              <input
+                type="text"
                 placeholder="Số điện thoại"
-                {...register("soDt", {
+                {...register("soDT", {
                   required: "Không được để trống",
                   pattern: {
                     value: /(84|0[3|5|7|8|9])+([0-9]{8})\b/,
@@ -122,18 +152,20 @@ const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
                 })}
               />
             </div>
-            {errors.soDt && <p className="errorMessage">{errors.soDt.message}</p>}
+            {errors.soDT && (
+              <p className="errorMessage">{errors.soDT.message}</p>
+            )}
             <label htmlFor="maLoaiNguoiDung">Mã loại người dùng</label>
-            <div className='user-form-control'>
-              <select
-                {...register("maLoaiNguoiDung")}>
+            <div className="user-form-control">
+              <select {...register("maLoaiNguoiDung")}>
                 <option value="KhachHang">Khách Hàng</option>
                 <option value="QuanTri">Quản Trị</option>
               </select>
             </div>
             <label htmlFor="hoTen">Họ tên</label>
-            <div className='user-form-control'>
-              <input type="text"
+            <div className="user-form-control">
+              <input
+                type="text"
                 placeholder="Họ tên"
                 {...register("hoTen", {
                   required: "Không được để trống",
@@ -142,24 +174,26 @@ const UserModal = ({ userDetail, show, handleClose, isUpdate }) => {
                 })}
               />
             </div>
-            {errors.hoTen && <p className="errorMessage">{errors.hoTen.message}</p>}
+            {errors.hoTen && (
+              <p className="errorMessage">{errors.hoTen.message}</p>
+            )}
           </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Hủy
           </Button>
-          <Button variant="primary"
-            type='submit'
-            onClick={handleSubmit(onSubmit)}>
-            {
-              isUpdate ? "Cập nhật" : "Thêm"
-            }
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={handleSubmit(onSubmit)}
+          >
+            {isUpdate ? "Cập nhật" : "Thêm"}
           </Button>
         </Modal.Footer>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default UserModal
+export default UserModal;
