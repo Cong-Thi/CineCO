@@ -22,8 +22,8 @@ const moviesManagementAPI = {
     });
   },
 
-  addUser: (user) => {
-    return fetcher.post("QuanLyNguoiDung/ThemNguoiDung", user);
+  addMovie: (movie) => {
+    return fetcher.post("QuanLyPhim/ThemPhimUploadHinh", movie);
   },
 
   updateUser: (user) => {

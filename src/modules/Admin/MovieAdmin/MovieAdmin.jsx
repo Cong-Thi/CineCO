@@ -10,12 +10,16 @@ import ReactPaginate from "react-paginate";
 
 import "./movieAdmin.scss";
 import moviesManagementAPI from "../../../service/moviesManagementAPI";
+import MovieModal from "../../../components/MovieModal/MovieModal";
 
 const MovieAdmin = () => {
   const [searchValue, setSearchValue] = useState("");
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+  
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
     getMovies();
   }, []);
@@ -48,7 +52,12 @@ const MovieAdmin = () => {
   const handleSearchClick = () => {
     getMovies(searchValue);
   };
-
+  const handleShow = () => {
+    setShow(true);  
+  }
+  const handleClose = () => {
+    setShow(false);  
+  }
   return (
     <div className="movie-admin">
       <div className="movie-admin__content">
@@ -67,7 +76,8 @@ const MovieAdmin = () => {
               <FaSearch />
             </Button>
           </InputGroup>
-          <Button className="btn-add">Thêm Phim</Button>
+          <Button className="btn-add" onClick={handleShow}>Thêm Phim</Button>
+          <MovieModal movies={movies} show={show} handleClose={handleClose} />
         </div>
         <Table bordered hover>
           <thead>
