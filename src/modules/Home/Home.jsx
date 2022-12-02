@@ -13,7 +13,7 @@ const Home = () => {
     <MovieFilter/>
     <MovieShowing/>
     <Cinema/>
-    <Footer/>
+    
     </>
   )
 }

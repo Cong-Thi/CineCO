@@ -37,8 +37,8 @@ import logo from "../../assets/img/logo-cineco.png"
             
           </div>
           <div className="account">
-            <Link to="/signin" className="bx bxs-user">Đăng Nhập</Link>
-            <Link to="/signup">Đăng Ký</Link>
+            <Link to="/signin"><i className="bx bxs-user"></i>Đăng Nhập</Link>
+            {/* <Link to="/signup">Đăng Ký</Link> */}
           </div>
       </Container>
     </div>

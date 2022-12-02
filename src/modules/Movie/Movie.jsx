@@ -11,7 +11,6 @@ const Movie = () => {
   return (
     <>
       <Overview movieId={movieId} />
-
       <Showtimes movieId={movieId}/>
     </>
   )

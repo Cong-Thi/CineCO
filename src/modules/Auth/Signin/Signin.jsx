@@ -1,8 +1,9 @@
-import React from 'react'
+import Reac, { useState, useEffect } from 'react'
 import {useForm} from "react-hook-form"
 import { useSelector, useDispatch } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { signin } from '../../../slices/authSlice'
+import "./signin.scss"
 
 const Signin = () => {
     const dispatch = useDispatch();
@@ -10,39 +11,25 @@ const Signin = () => {
 
     const {register, handleSubmit, formState} = useForm({
         defaultValues: {taiKhoan:"", matKhau:""},
-        mode: "onTouched", // Điều kiện để kích hoạt validation, mặc định là onSubmit
+        mode: "onTouched",
     })
 
     const {errors} = formState;
 
-    // const taiKhoan = register("taiKhoan")
-    // console.log(taiKhoan);
-
     const onSubmit = (values) => {
-        console.log(values);
         dispatch(signin(values));
     }
 
     if(user){
-        // Có thông tin user => đã đăng nhập => redirect về home
         return <Navigate to="/" replace/>
     }
   return (
-    <div>
-        <h1>Signin</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
+    <div className='signin container'>
+        <h2>Đăng Nhập</h2>
+        
+        <form onSubmit={handleSubmit(onSubmit)} className='form-sign'>
+            <div className='form-item'>
                 <label>Tài khoản</label>
-                {/* <input {...register("taiKhoan", {
-                    required: true,
-                    minLength:5,
-                    maxLength: 20,
-                })}/>
-                {errors.taiKhoan?.type === "required" && <span>Tài khoản không được để trống</span>}
-                {["minLength","maxLength"].includes(errors.taiKhoan?.type) && (
-                    <span>Tài khoản 5-20 ký tự</span>
-                )} */}
-
                 <input {...register("taiKhoan", {
                     required: {
                         value: true,
@@ -57,18 +44,21 @@ const Signin = () => {
                         message:"Tài khoản 5-20 ký tự",
                     },
                 })}/>
-                
+                <br/>
                 {errors.taiKhoan && <span>{errors.taiKhoan.message}</span>}
 
             </div>
-            <div>
+            <div className='form-item'>
                 <label>Mật khẩu</label>
                 <input {...register("matKhau", {
                     required: true,
                 })}/>
+                <br/>
                 {errors.matKhau && <span>Mật khẩu không được để trống</span>}
             </div>
+            
             <button disabled={loading}>Đăng Nhập</button>
+            <div>Chưa có tài khoản ? <Link to='/Signup'>Đăng ký ngay !</Link></div>
             {error && <p>{error}</p>}
         </form>
     </div>

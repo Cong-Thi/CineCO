@@ -52,7 +52,7 @@ const footerInfo = [
     ],
   },
   {
-    title: "Kết nối CyberCinema",
+    title: "Kết nối CineCO",
     content: [
       { item: <SocialMedia />, path: "/" },
       { item: <AppDownload />, path: "/" },

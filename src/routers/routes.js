@@ -7,6 +7,8 @@ import Signin from "../modules/Auth/Signin";
 import Signup from "../modules/Auth/Signup";
 import Home from "../modules/Home";
 import Movie from "../modules/Movie";
+import Ticket from "../modules/Ticket/Ticket";
+
 
 export const routes = createBrowserRouter([
     {path:"/",
@@ -33,9 +35,11 @@ export const routes = createBrowserRouter([
             {path: "/signup", element: <Signup/>, title:"Đăng Ký"},
         ]
         },
+        {path:"/ticket/:showtimeId", element:<Ticket/>},
     ]
     },
-
+    
+    
     {path:"*", element: <NotFound/>},
 ])
 

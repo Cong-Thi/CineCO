@@ -5,6 +5,9 @@ const initialState = {
     user: JSON.parse(localStorage.getItem("user")) || null,
     loading: false,
     error: null,
+    isLoading: false,
+    isOpen: false,
+    isOpenRight: false,
 };
 
 // signin action
@@ -22,6 +25,18 @@ export const signin = createAsyncThunk(
     }
 )
 
+export const signUp = createAsyncThunk(
+    'auth/signup',
+    async (user) => {
+        try {
+            const {data} = await authAPI.signUp(user);
+            return data.content;
+        } catch (error) {
+            throw(error);
+        }
+    }
+)
+
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -29,6 +44,18 @@ const authSlice = createSlice({
         logout: (state, action) => {
             localStorage.removeItem("user");
             return {...state, user: null};
+        },
+        loginShow : (state) => {
+            return {...state, isOpen : true}
+        },
+        loginClose : (state) => {
+            return {...state, isOpen : false}
+        },
+        show : (state) => {
+            return {...state, isOpenRight: true}
+        },
+        close : (state) => {
+            return {...state, isOpenRight: false}
         }
     },
     extraReducers: (builder) => {
@@ -43,9 +70,19 @@ const authSlice = createSlice({
         builder.addCase(signin.rejected, (state, action) => {
             return {...state, loading: false, error: action.error.message};
         });
+
+        builder.addCase(signUp.pending, (state) => {
+            return {...state, isLoading: true};
+        });
+        builder.addCase(signUp.fulfilled, (state, action) => {
+            return {...state, isLoading: false, myAcount: action.payload};
+        });
+        builder.addCase(signUp.rejected, (state, action) => {
+            return {...state, isLoading: false, myAcount: action.error.message};
+        });
     }
 });
 
-export const {logout} = authSlice.actions;
+export const {loginShow, loginClose, logout, show, close} = authSlice.actions;
 
 export default authSlice.reducer;
