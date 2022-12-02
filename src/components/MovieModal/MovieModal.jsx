@@ -3,6 +3,8 @@ import { Button, Modal } from "react-bootstrap";
 import "./movieModal.scss";
 import {useForm } from "react-hook-form";
 import moviesManagementAPI from "../../service/moviesManagementAPI";
+
+import Switch from "react-switch";
 const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
   const {
     register,
