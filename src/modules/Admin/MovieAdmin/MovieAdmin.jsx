@@ -3,22 +3,35 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
+import { TbMovie } from "react-icons/tb"
 
 import { Button, Form, InputGroup, Table } from "react-bootstrap";
-import UserModal from "../../../components/UserModal/UserModal";
 import ReactPaginate from "react-paginate";
 
 import "./movieAdmin.scss";
 import moviesManagementAPI from "../../../service/moviesManagementAPI";
 import MovieModal from "../../../components/MovieModal/MovieModal";
+import CinemaModal from "../../../components/CinemaModal";
 
 const MovieAdmin = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [isUpdate, setIsUpdate] = useState(false);
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  
+  const [movieDetail, setMovieDetail] = useState({})
+
   const [show, setShow] = useState(false);
+  const [showCinema, setShowCinema] = useState(false);
+  console.log(movies);
+
+  const handleClose =  async (tenPhim, soTrang) => {
+    const data = await moviesManagementAPI.getMovies(tenPhim, soTrang);
+    setMovies(data.items);
+    setMovieDetail({});
+    setShow(false); 
+    setIsUpdate(false); 
+  }
 
   useEffect(() => {
     getMovies();
@@ -30,6 +43,8 @@ const MovieAdmin = () => {
       setPage(data.currentPage);
       setMovies(data.items);
       setTotalPages(data.totalPages);
+      setMovieDetail({});
+      setIsUpdate(false);
     }
   };
 
@@ -38,11 +53,12 @@ const MovieAdmin = () => {
   };
 
   const handleDelete = async (maPhim) => {
-    console.log(maPhim);
   };
 
-  const handleUpdate = (movieDetail) => {
-    console.log(movieDetail);
+  const handleUpdate =  (movieDetail) => {
+    setMovieDetail(movieDetail);
+    setShow(true);
+    setIsUpdate(true);
   };
 
   const handleSearch = (value) => {
@@ -55,8 +71,12 @@ const MovieAdmin = () => {
   const handleShow = () => {
     setShow(true);  
   }
-  const handleClose = () => {
-    setShow(false);  
+ 
+  const handleShowCinema = () => {
+    setShowCinema(true);  
+  }
+  const handleCloseCinema = () => {
+    setShowCinema(false);  
   }
   return (
     <div className="movie-admin">
@@ -77,7 +97,21 @@ const MovieAdmin = () => {
             </Button>
           </InputGroup>
           <Button className="btn-add" onClick={handleShow}>Thêm Phim</Button>
-          <MovieModal movies={movies} show={show} handleClose={handleClose} />
+          <MovieModal  show={show} handleClose={handleClose}
+          movieDetail={movieDetail.maPhim ? movieDetail : {
+            tenPhim:"",
+            biDanh:"",
+            moTa: "",
+            ngayKhoiChieu: "",
+            trailer: "",
+            hinhAnh: "",
+            danhGia: "",
+            hot: false,
+            dangChieu: false, 
+            sapChieu: false,
+          }} 
+            isUpdate={isUpdate}
+          />
         </div>
         <Table bordered hover>
           <thead>
@@ -113,6 +147,14 @@ const MovieAdmin = () => {
                   >
                     <BsTrash />
                   </Button>
+                  <Button
+                    variant="outline-danger"
+                    className="col-5 m-1"
+                    onClick={() => handleShowCinema()}
+                  >
+                    <TbMovie/>
+                  </Button>
+                  <CinemaModal show={showCinema} handleClose={handleCloseCinema} />
                 </th>
               </tr>
             ))}

@@ -26,8 +26,8 @@ const moviesManagementAPI = {
     return fetcher.post("QuanLyPhim/ThemPhimUploadHinh", movie);
   },
 
-  updateUser: (user) => {
-    return fetcher.post("QuanLyNguoiDung/CapNhatThongTinNguoiDung", user);
+  updateMovie: (movie) => {
+    return fetcher.post("QuanLyPhim/CapNhatPhimUpload", movie);
   },
 
   deleteUser: (id) => {
