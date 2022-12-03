@@ -23,7 +23,6 @@ const MovieAdmin = () => {
 
   const [show, setShow] = useState(false);
   const [showCinema, setShowCinema] = useState(false);
-  console.log(movies);
 
   const handleClose = async (tenPhim, soTrang) => {
     const data = await moviesManagementAPI.getMovies(tenPhim, soTrang);
@@ -108,13 +107,9 @@ const MovieAdmin = () => {
               trailer: "",
               hinhAnh: "",
               danhGia: "",
-              hot: false,
-              dangChieu: false,
-              sapChieu: false,
             }}
             isUpdate={isUpdate}
           />
-          <CinemaModal show={showCinema} handleClose={handleCloseCinema} />
         </div>
         <Table bordered hover>
           <thead>
@@ -157,6 +152,8 @@ const MovieAdmin = () => {
                   >
                     <TbMovie />
                   </Button>
+                  <CinemaModal movie={movie} show={showCinema} handleClose={handleCloseCinema} />
+
                 </th>
               </tr>
             ))}

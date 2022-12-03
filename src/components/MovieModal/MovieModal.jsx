@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./movieModal.scss";
-import { useForm } from "react-hook-form";
+import {useForm } from "react-hook-form";
 import moviesManagementAPI from "../../service/moviesManagementAPI";
 
 import Switch from "react-switch";
@@ -14,8 +14,8 @@ const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
     formState: { errors },
   } = useForm({
     defaultValues: useMemo(() => {
-      if (movieDetail !== undefined) {
-        return {
+      if (movieDetail !== undefined){
+        return{
           tenPhim: movieDetail.tenPhim,
           biDanh: movieDetail.biDanh,
           moTa: movieDetail.moTa,
@@ -23,21 +23,21 @@ const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
           trailer: movieDetail.trailer,
           hinhAnh: movieDetail.hinhAnh,
         };
-      } else {
-        return {
-          tenPhim: "",
-          biDanh: "",
-          moTa: "",
-          ngayKhoiChieu: "",
-          trailer: "",
-          hinhAnh: "",
-        };
-      }
-    }, [movieDetail]),
-    mode: "onTouched",
-  });
+      }else {
+     return {
+      tenPhim: "",
+      biDanh: "",
+      moTa: "",
+      ngayKhoiChieu: "",
+      trailer: "",
+      hinhAnh: "",
+    };
+  }
+},[movieDetail]),
+mode: "onTouched",
+});
 
-
+  
 
   const [imgPreview, setImgPreview] = useState("")
   const onSubmit = async (values) => {
@@ -46,7 +46,7 @@ const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
         tenPhim: values.tenPhim,
         biDanh: values.biDanh,
         moTa: values.moTa,
-        maNhom: "GP01",
+        maNhom:"GP01",
         ngayKhoiChieu: values.ngayKhoiChieu,
         trailer: values.trailer,
         hinhAnh: values.hinhAnh,
@@ -54,16 +54,16 @@ const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
 
 
       const payload = { ...values, hinhAnh: values.hinhAnh, maNhom: "GP01" };
-
-      const formData = new FormData();
+      
+        const formData = new FormData();
       for (let key in payload) {
         console.log(payload[key])
         formData.append(key, payload[key]);
       }
-      if (isUpdate) {
-        await moviesManagementAPI.updateMovie(formData);
-      } else {
-        await moviesManagementAPI.addMovie(formData);
+      if(isUpdate) {
+        await moviesManagementAPI.updateMovie(newValues);
+      }else{
+        await moviesManagementAPI.addMovie(newValues);
       }
       handleClose();
     } catch (error) {
@@ -72,16 +72,16 @@ const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
   };
   useEffect(() => {
     reset(movieDetail);
-  }, [movieDetail, reset]);
-  const handleChangeImage = (evt) => {
+  },[movieDetail, reset]);
+  const handleChangeImage = (evt) =>{
     const file = evt.target.files[0];
-    if (!file) {
+    if(!file){
       return;
-    } else {
+    }else{
       setValue("hinhAnh", file)
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
-      fileReader.onload = (evt) => {
+      fileReader.onload = (evt) =>{
         setImgPreview(evt.target.result);
 
       }
@@ -93,15 +93,16 @@ const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {isUpdate ? " Cập nhật Phim" : "Thêm Phim"}
+          {isUpdate ? " Cập nhật Phim" : "Thêm Phim"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="">Tên Phim</label>
             <div
-              className={`movie-form-control ${errors.tenPhim ? "errorInput" : ""
-                }`}
+              className={`movie-form-control ${
+                errors.tenPhim ? "errorInput" : ""
+              }`}
             >
               <input
                 type="text"
@@ -116,8 +117,9 @@ const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
             )}
             <label htmlFor="">Bí Danh</label>
             <div
-              className={`movie-form-control ${errors.biDanh ? "errorInput" : ""
-                }`}
+              className={`movie-form-control ${
+                errors.biDanh ? "errorInput" : ""
+              }`}
             >
               <input
                 type="text"
@@ -141,64 +143,67 @@ const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
             )}
             <label htmlFor="">Hình Ảnh</label>
             <div
-              className={`movie-form-control ${errors.biDanh ? "errorInput" : ""
-                }`}
+              className={`movie-form-control ${
+                errors.biDanh ? "errorInput" : ""
+              }`}
             >
-              <input
-                // type="file" {...register("hinhAnh")} 
-                type="file" onChange={handleChangeImage}
+              <input 
+              // type="file" {...register("hinhAnh")} 
+              type="file" onChange = {handleChangeImage}
               />
-              {imgPreview && <img width={150} src={imgPreview} alt="preview" />}
+              {imgPreview && <img width={150} src={imgPreview} alt="preview"/>}
             </div>
             {errors.hinhAnh && (
               <p className="errorMessage">{errors.hinhAnh.message} </p>
             )}
             <label htmlFor="">Ngày khởi chiếu</label>
             <div
-              className={`movie-form-control ${errors.ngayKhoiChieu ? "errorInput" : ""
-                }`}
+              className={`movie-form-control ${
+                errors.ngayKhoiChieu ? "errorInput" : ""
+              }`}
             >
-              <input type="text" {...register("ngayKhoiChieu", { required: "Không được để trống" })} />
+              <input type="text" {...register("ngayKhoiChieu",{required:"Không được để trống"})} />
             </div>
             {errors.ngayKhoiChieu && (
               <p className="errorMessage">{errors.ngayKhoiChieu.message} </p>
             )}
-
+            
             <label htmlFor="">Mô Tả</label>
             <div
-              className={`movie-form-control ${errors.moTa ? "errorInput" : ""
-                }`}
+              className={`movie-form-control ${
+                errors.moTa ? "errorInput" : ""
+              }`}
             >
               <input type="text" {...register("moTa",
-                { required: "Không được để trống" })} />
+              {required:"Không được để trống"})} />
             </div>
             {errors.moTa && (
               <p className="errorMessage">{errors.moTa.message} </p>
             )}
             <label htmlFor="">Đánh Giá</label>
             <div
-              className={`movie-form-control ${errors.danhGia ? "errorInput" : ""
-                }`}
+              className={`movie-form-control ${
+                errors.danhGia ? "errorInput" : ""
+              }`}
             >
               <input type="number" {...register("danhGia",
-                {
-                  required: "Không được để trống",
-                  pattern: {
-                    value: /^([1-9]|10)$/,
-                    message: "Đánh giá phải từ 1 tới 10"
-                  }
-                }
-
+              {required: "Không được để trống",
+              pattern:{
+                value:  /^([1-9]|10)$/,
+                message:"Đánh giá phải từ 1 tới 10"
+              }
+            }
+              
               )} />
             </div>
             {errors.danhGia && (
               <p className="errorMessage">{errors.danhGia.message} </p>
             )}
-
+            
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => handleClose()}>
+          <Button variant="secondary" onClick={()=>handleClose()}>
             Hủy
           </Button>
           <Button
