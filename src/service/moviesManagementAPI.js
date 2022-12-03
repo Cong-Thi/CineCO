@@ -30,10 +30,10 @@ const moviesManagementAPI = {
     return fetcher.post("QuanLyPhim/CapNhatPhimUpload", movie);
   },
 
-  deleteUser: (id) => {
-    return fetcher.delete("QuanLyNguoiDung/XoaNguoiDung", {
+  deleteMovie: (maPhim) => {
+    return fetcher.delete("QuanLyPhim/XoaPhim", {
       params: {
-        TaiKhoan: id,
+        MaPhim: maPhim,
       },
     });
   },

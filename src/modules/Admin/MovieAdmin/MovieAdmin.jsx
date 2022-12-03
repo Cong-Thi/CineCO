@@ -25,12 +25,12 @@ const MovieAdmin = () => {
   const [showCinema, setShowCinema] = useState(false);
   console.log(movies);
 
-  const handleClose =  async (tenPhim, soTrang) => {
+  const handleClose = async (tenPhim, soTrang) => {
     const data = await moviesManagementAPI.getMovies(tenPhim, soTrang);
     setMovies(data.items);
     setMovieDetail({});
-    setShow(false); 
-    setIsUpdate(false); 
+    setShow(false);
+    setIsUpdate(false);
   }
 
   useEffect(() => {
@@ -53,9 +53,11 @@ const MovieAdmin = () => {
   };
 
   const handleDelete = async (maPhim) => {
+    await moviesManagementAPI.deleteMovie(maPhim);
+    getMovies(searchValue, page);
   };
 
-  const handleUpdate =  (movieDetail) => {
+  const handleUpdate = (movieDetail) => {
     setMovieDetail(movieDetail);
     setShow(true);
     setIsUpdate(true);
@@ -69,14 +71,14 @@ const MovieAdmin = () => {
     getMovies(searchValue);
   };
   const handleShow = () => {
-    setShow(true);  
+    setShow(true);
   }
- 
+
   const handleShowCinema = () => {
-    setShowCinema(true);  
+    setShowCinema(true);
   }
   const handleCloseCinema = () => {
-    setShowCinema(false);  
+    setShowCinema(false);
   }
   return (
     <div className="movie-admin">
@@ -97,21 +99,22 @@ const MovieAdmin = () => {
             </Button>
           </InputGroup>
           <Button className="btn-add" onClick={handleShow}>Thêm Phim</Button>
-          <MovieModal  show={show} handleClose={handleClose}
-          movieDetail={movieDetail.maPhim ? movieDetail : {
-            tenPhim:"",
-            biDanh:"",
-            moTa: "",
-            ngayKhoiChieu: "",
-            trailer: "",
-            hinhAnh: "",
-            danhGia: "",
-            hot: false,
-            dangChieu: false, 
-            sapChieu: false,
-          }} 
+          <MovieModal show={show} handleClose={handleClose}
+            movieDetail={movieDetail.maPhim ? movieDetail : {
+              tenPhim: "",
+              biDanh: "",
+              moTa: "",
+              ngayKhoiChieu: "",
+              trailer: "",
+              hinhAnh: "",
+              danhGia: "",
+              hot: false,
+              dangChieu: false,
+              sapChieu: false,
+            }}
             isUpdate={isUpdate}
           />
+          <CinemaModal show={showCinema} handleClose={handleCloseCinema} />
         </div>
         <Table bordered hover>
           <thead>
@@ -152,9 +155,8 @@ const MovieAdmin = () => {
                     className="col-5 m-1"
                     onClick={() => handleShowCinema()}
                   >
-                    <TbMovie/>
+                    <TbMovie />
                   </Button>
-                  <CinemaModal show={showCinema} handleClose={handleCloseCinema} />
                 </th>
               </tr>
             ))}
