@@ -1,0 +1,112 @@
+.cinema-wrapper{
+    background-image: linear-gradient(to right, #27001f, #4a0042, #27001f);
+    color: white;
+    padding: 30px 0;
+
+    .cinema-container{
+        width: 85%;
+        margin: 0 auto;
+
+        .cinema-title{
+            text-transform: uppercase;
+            font-size: 24px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .cinema-content{
+            display: flex;
+            justify-content:flex-start;
+            min-width: 100%;
+            
+            .cinema-logo{
+                background-color: #4a0042;
+                border-radius:  10px 0 0 10px ;
+                min-width: 10%;
+            }
+
+            .cinema-address{
+                padding: 0 20px;
+                min-width: 90%;
+            }
+        }
+    }     
+}
+
+.theater-content{
+    display: flex;
+    justify-content: flex-start;
+
+    .theater-logo{
+        background-color: #4a0042;
+        min-width: 30%;
+
+        .logo-item{
+            h3{
+                color: #e00d7a;
+            }
+
+            p{
+                color: white;
+                font-size: 13px;
+                padding: 10px 0;
+            }
+
+            &:hover h3{
+                color: #e00d7a ;
+            }
+            &:hover p{
+                color: black ;
+            }
+        }
+        
+    }
+}
+
+.movie-wrapper{
+    padding: 0 20px;
+    .movie-content{
+        background-color: #4a0042;
+        border-radius: 0 10px 10px 0;
+        padding: 15px;
+        min-width: 70%;
+
+       .movie-item{
+            display: flex;
+
+            .movie-image{
+                width: 80px;
+                height: 120px;
+                border-radius: 10px;
+            }
+
+            .movie-showtime{
+                padding: 0 20px;
+
+                .movie-title{
+                    color: #f18720;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                .showtime{
+                    display: flex;
+                    .showtime-item{
+                        padding: 20px 10px;
+                        
+                        button{
+                            padding: 10px 20px;
+                            border-radius: 10px;
+                            border: none;
+                            cursor: pointer;
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+                        
+                    }
+                }
+            }
+       } 
+    }
+}

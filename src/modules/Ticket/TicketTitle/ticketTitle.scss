@@ -1,0 +1,39 @@
+.ticket-wrapper{
+    width: 100%;
+    background-image: url(../../../assets/img/pattern.png);
+    border-radius: 20px;
+    padding: 20px 0;
+    margin-top: 20px;
+
+    .ticket-info{
+        display: flex;
+        justify-content: center;
+
+        .ticket-img img{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .ticket-title{
+            display: flex;
+            flex-direction: column;
+            padding-left: 50px;
+
+            .title-name{
+                font-size: 20px;
+                color: #f18720;
+                font-weight: bold;
+            }
+
+            .title-item{
+                display: flex;
+                padding: 3px 0;
+
+                span{
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+}
