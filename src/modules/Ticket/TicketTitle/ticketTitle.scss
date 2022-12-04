@@ -29,7 +29,12 @@
             .title-item{
                 display: flex;
                 padding: 3px 0;
+                align-items: center;
 
+                h4{
+                    font-size: 16px;
+                    margin-bottom:0px
+                }
                 span{
                     padding-left: 10px;
                 }
