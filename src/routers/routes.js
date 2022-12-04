@@ -8,6 +8,9 @@ import Signup from "../modules/Auth/Signup";
 import Home from "../modules/Home";
 import Movie from "../modules/Movie";
 import Ticket from "../modules/Ticket/Ticket";
+import Admin from "../components/AdminLayout/Admin";
+import MovieAdmin from "../modules/Admin/MovieAdmin";
+import UserAdmin from "../modules/Admin/UserAdmin/UserAdmin";
 
 
 export const routes = createBrowserRouter([
@@ -38,6 +41,15 @@ export const routes = createBrowserRouter([
         {path:"/ticket/:showtimeId", element:<Ticket/>},
     ]
     },
+
+    {
+        path: "/admin",
+        element: <Admin />,
+        children: [
+          { path: "/admin/", element: <UserAdmin /> },
+          { path: "/admin/movie-admin", element: <MovieAdmin /> },
+        ],
+      },
     
     
     {path:"*", element: <NotFound/>},

@@ -26,7 +26,7 @@ import logo from "../../assets/img/logo-cineco.png"
 
             <Link to="/" className="link__home bx bxs-home"></Link>
 
-            <div className="nav__menu">
+            <div className="nav-menu">
               <ul>
                 <li><Link to="/movie/:movieId">Phim</Link></li>
                 <li><Link to="/movie/:movieId">Lịch Phim</Link></li>

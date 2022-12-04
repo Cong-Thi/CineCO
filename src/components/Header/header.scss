@@ -26,7 +26,7 @@
                 line-height: 50px;
                 font-size: 25px;
             }
-            .nav__menu{
+            .nav-menu{
                 padding: 3px;
                 border: 1px solid #e00d7a;
                 border-radius: 30px;
@@ -41,9 +41,11 @@
                     -webkit-border-radius: 30px;
                     list-style: none;
                     display: flex;
+                    margin-bottom: 0 !important; 
 
                     li{
-                        padding: 10px;  
+                        padding: 10px;
+                        
                     }
                     li:first-child{
                         background-color: #f18720;
