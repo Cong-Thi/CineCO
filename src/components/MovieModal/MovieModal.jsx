@@ -3,8 +3,6 @@ import { Button, Modal } from "react-bootstrap";
 import "./movieModal.scss";
 import {useForm } from "react-hook-form";
 import moviesManagementAPI from "../../service/moviesManagementAPI";
-
-
 import Switch from "react-switch";
 const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
   const {
@@ -58,7 +56,7 @@ mode: "onTouched",
       
         const formData = new FormData();
       for (let key in payload) {
-        console.log(payload[key])
+        console.log(values.hinhAnh)
         formData.append(key, payload[key]);
       }
       if(isUpdate) {

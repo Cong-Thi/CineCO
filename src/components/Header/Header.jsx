@@ -10,8 +10,10 @@ import { Nav } from "react-bootstrap";
 import {logout} from "../../slices/authSlice"
 
  const Header = () => {
+
   const dispatch = useDispatch();
   const {user} = useSelector((state)=> state.auth)
+
   const handleLogout = () => {
     dispatch(logout());
     alert("Bạn đã đăng xuất")
@@ -27,6 +29,7 @@ import {logout} from "../../slices/authSlice"
     )
 }
   const Nonlogged = () =>{
+
     return(
         <Nav className="account">
           <Nav.Link href="/signin">Đăng Nhập</Nav.Link>

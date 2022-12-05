@@ -37,6 +37,9 @@ const moviesManagementAPI = {
       },
     });
   },
+  getCinema: () => {
+    return fetcher.get("QuanLyRap/LayThongTinHeThongRap");
+  },
 };
 
 export default moviesManagementAPI;

@@ -5,7 +5,15 @@ const fetcher = axios.create({
   headers: {
     TokenCybersoft:
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAzMiIsIkhldEhhblN0cmluZyI6IjE1LzA0LzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY4MTUxNjgwMDAwMCIsIm5iZiI6MTY1MzkzMDAwMCwiZXhwIjoxNjgxNjY0NDAwfQ.oR9K8iSTqbo-t0Q_a-WFnKePPaMAr7sdlgR5xKAtQWA",
-    Authorization: `Bearer ${localStorage.getItem('accessToken') || ""}`,
+    Authorization: `Bearer ${
+      // JSON.parse(
+      localStorage.getItem("user")
+        ? // )
+          // JSON.parse(
+          localStorage.getItem("user").accessToken
+        : // ).accessToken
+          ""
+    }`,
   },
 });
 fetcher.interceptors.response.use(
