@@ -19,6 +19,7 @@ const UserAdmin = () => {
   const [numpage, setNumpage] = useState("")
   const [userSearch, setUserSearch] = useState([])
 
+  console.log(users);
 
   const [searchValue, setSearchValue] = useState("")
   const keys = ["taiKhoan", "email", "hoTen", "soDT"]
@@ -71,7 +72,6 @@ const UserAdmin = () => {
   }
 
   const handleUpdate = (userDetail) => {
-    console.log(userDetail);
     setUserDetail(userDetail);
     setShow(true);
     setIsUpdate(true);

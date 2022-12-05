@@ -4,9 +4,36 @@ import {routes}  from "../../routers/routes";
 import { Container } from "@mantine/core";
 import "./header.scss";
 import logo from "../../assets/img/logo-cineco.png"
+import { useDispatch, useSelector } from "react-redux";
+import { Nav } from "react-bootstrap";
 
+import {logout} from "../../slices/authSlice"
 
  const Header = () => {
+  const dispatch = useDispatch();
+  const {user} = useSelector((state)=> state.auth)
+  const handleLogout = () => {
+    dispatch(logout());
+    alert("Bạn đã đăng xuất")
+  }
+  const Logged = () =>{
+    return(
+      
+    <Nav className="account">
+      <Nav.Link href="/">Xin Chào {user.hoTen}</Nav.Link>
+      <Nav.Link onClick={handleLogout}>Đăng Xuất</Nav.Link>
+      
+      </Nav>
+    )
+}
+  const Nonlogged = () =>{
+    return(
+        <Nav className="account">
+          <Nav.Link href="/signin">Đăng Nhập</Nav.Link>
+          <Nav.Link href="/signup">Đăng Ký</Nav.Link>
+        </Nav>
+      )
+  }
   return (
     <div className="header">
       <Container size="xl">
@@ -36,10 +63,7 @@ import logo from "../../assets/img/logo-cineco.png"
             </div>
             
           </div>
-          <div className="account">
-            <Link to="/signin"><i className="bx bxs-user"></i>Đăng Nhập</Link>
-            {/* <Link to="/signup">Đăng Ký</Link> */}
-          </div>
+            {user ?<Logged/> : <Nonlogged/>}
       </Container>
     </div>
   );
