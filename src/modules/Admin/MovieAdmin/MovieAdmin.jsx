@@ -9,7 +9,7 @@ import { Button, Form, InputGroup, Table } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 
 import "./movieAdmin.scss";
-import moviesManagementAPI from "../../../service/moviesManagementAPI";
+import moviesManagementAPI from "../../../services/moviesManagementAPI";
 import MovieModal from "../../../components/MovieModal/MovieModal";
 import CinemaModal from "../../../components/CinemaModal";
 

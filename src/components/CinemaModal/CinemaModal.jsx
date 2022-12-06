@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
-import { useForm } from 'react-hook-form';
-import moviesManagementAPI from '../../service/moviesManagementAPI';
+import moviesManagementAPI from '../../services/moviesManagementAPI';
 import locale from "antd/es/date-picker/locale/vi_VN";
 import { DatePicker } from 'antd';
 import "./cinemaModal.scss"

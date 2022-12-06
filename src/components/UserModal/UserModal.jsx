@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import usersManagementAPI from "../../service/usersManagementAPI";
+import usersManagementAPI from "../../services/usersManagementAPI";
 
 import "./userModal.scss";
 

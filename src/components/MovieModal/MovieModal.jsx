@@ -2,8 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./movieModal.scss";
 import {useForm } from "react-hook-form";
-import moviesManagementAPI from "../../service/moviesManagementAPI";
-import Switch from "react-switch";
+import moviesManagementAPI from "../../services/moviesManagementAPI";
 const MovieModal = ({ movieDetail, show, handleClose, isUpdate }) => {
   const {
     register,
@@ -41,28 +40,19 @@ mode: "onTouched",
   const [imgPreview, setImgPreview] = useState("")
   const onSubmit = async (values) => {
     try {
-      const newValues = {
-        tenPhim: values.tenPhim,
-        biDanh: values.biDanh,
-        moTa: values.moTa,
-        maNhom:"GP01",
-        ngayKhoiChieu: values.ngayKhoiChieu,
-        trailer: values.trailer,
-        hinhAnh: values.hinhAnh,
-      }
-
 
       const payload = { ...values, hinhAnh: values.hinhAnh, maNhom: "GP01" };
       
         const formData = new FormData();
       for (let key in payload) {
-        console.log(values.hinhAnh)
         formData.append(key, payload[key]);
       }
+      console.log(formData);
+
       if(isUpdate) {
-        await moviesManagementAPI.updateMovie(newValues);
+        await moviesManagementAPI.updateMovie(formData);
       }else{
-        await moviesManagementAPI.addMovie(newValues);
+        await moviesManagementAPI.addMovie(formData);
       }
       handleClose();
     } catch (error) {

@@ -1,4 +1,4 @@
-import fetcher from "./fetcher";
+import fetcher from "../services/fetcher";
 
 const moviesManagementAPI = {
   getMovies: (tenPhim, soTrang) => {
@@ -36,6 +36,9 @@ const moviesManagementAPI = {
         MaPhim: maPhim,
       },
     });
+  },
+  getCinema: () => {
+    return fetcher.get("QuanLyRap/LayThongTinHeThongRap");
   },
 };
 

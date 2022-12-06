@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import usersAPI from "../../../service/usersManagementAPI"
+import usersAPI from "../../../services/usersManagementAPI"
 //react-bootstrap
 import { Button, Form, InputGroup, Table } from 'react-bootstrap'
 import { FaSearch } from 'react-icons/fa'
@@ -19,7 +19,6 @@ const UserAdmin = () => {
   const [numpage, setNumpage] = useState("")
   const [userSearch, setUserSearch] = useState([])
 
-  console.log(users);
 
   const [searchValue, setSearchValue] = useState("")
   const keys = ["taiKhoan", "email", "hoTen", "soDT"]
