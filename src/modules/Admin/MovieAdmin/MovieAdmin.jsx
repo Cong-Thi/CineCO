@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
-import { TbMovie } from "react-icons/tb"
+import { TbMovie } from "react-icons/tb";
 
 import { Button, Form, InputGroup, Table } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
@@ -19,10 +19,14 @@ const MovieAdmin = () => {
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  const [movieDetail, setMovieDetail] = useState({})
+  const [movieDetail, setMovieDetail] = useState({});
 
   const [show, setShow] = useState(false);
   const [showCinema, setShowCinema] = useState(false);
+  // const [calendaMovie, setCalendaMovie] = useState({
+  //   maPhim: "",
+  //   url: "",
+  // });
 
   const handleClose = async (tenPhim, soTrang) => {
     const data = await moviesManagementAPI.getMovies(tenPhim, soTrang);
@@ -30,7 +34,7 @@ const MovieAdmin = () => {
     setMovieDetail({});
     setShow(false);
     setIsUpdate(false);
-  }
+  };
 
   useEffect(() => {
     getMovies();
@@ -71,14 +75,18 @@ const MovieAdmin = () => {
   };
   const handleShow = () => {
     setShow(true);
-  }
+  };
 
-  const handleShowCinema = () => {
-    setShowCinema(true);
-  }
+  // const handleShowCinema = (item) => {
+  //   setCalendaMovie({
+  //     maPhim: item.maPhim,
+  //     url: item.url,
+  //   });
+  //   setShowCinema(true);
+  // };
   const handleCloseCinema = () => {
     setShowCinema(false);
-  }
+  };
   return (
     <div className="movie-admin">
       <div className="movie-admin__content">
@@ -97,17 +105,25 @@ const MovieAdmin = () => {
               <FaSearch />
             </Button>
           </InputGroup>
-          <Button className="btn-add" onClick={handleShow}>Thêm Phim</Button>
-          <MovieModal show={show} handleClose={handleClose}
-            movieDetail={movieDetail.maPhim ? movieDetail : {
-              tenPhim: "",
-              biDanh: "",
-              moTa: "",
-              ngayKhoiChieu: "",
-              trailer: "",
-              hinhAnh: "",
-              danhGia: "",
-            }}
+          <Button className="btn-add" onClick={handleShow}>
+            Thêm Phim
+          </Button>
+          <MovieModal
+            show={show}
+            handleClose={handleClose}
+            movieDetail={
+              movieDetail.maPhim
+                ? movieDetail
+                : {
+                    tenPhim: "",
+                    biDanh: "",
+                    moTa: "",
+                    ngayKhoiChieu: "",
+                    trailer: "",
+                    hinhAnh: "",
+                    danhGia: "",
+                  }
+            }
             isUpdate={isUpdate}
           />
         </div>
@@ -148,12 +164,15 @@ const MovieAdmin = () => {
                   <Button
                     variant="outline-danger"
                     className="col-5 m-1"
-                    onClick={() => handleShowCinema()}
+                    // onClick={() => handleShowCinema(item)}
                   >
                     <TbMovie />
                   </Button>
-                  <CinemaModal movie={movie} show={showCinema} handleClose={handleCloseCinema} />
-
+                  <CinemaModal
+                    // calendaMovie={calendaMovie}
+                    show={showCinema}
+                    handleClose={handleCloseCinema}
+                  />
                 </th>
               </tr>
             ))}
