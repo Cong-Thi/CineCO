@@ -16,18 +16,25 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
   //   },
   //   mode: "onTouched",
   // });
-  // useEffect(() => {
-  //   if (cinemaSelected) {
-  //     (async () => {
-  //       try {
-  //         const data = await moviesManagementAPI.getCinema(cinemaSelected);
-  //         setCinema(data);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     })();
-  //   }
-  // }, [cinemaSelected]);
+
+  useEffect(() => {
+    if (cinemaSelected) {
+      (async () => {
+        try {
+          const data = await moviesManagementAPI.getCinemaBranches(cinemaSelected);
+          setCinemaSelected(data);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [cinemaSelected]);
+
+  const handleChangeCinema = (e) => {
+    console.log(e.target.value);
+    setCinemaSelected(e.target.value);
+    console.log(cinemaSelected);
+  }
   useEffect(() => {
     (async () => {
       try {
@@ -47,11 +54,11 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
         <div className="row">
           <div className="poster col-6">
             <img
-              src="https://genk.mediacdn.vn/2019/5/14/photo-1-15578081452091331833974.jpg"
+              src={calendaMovie.hinhAnh}
               alt=""
               width={400}
             />
-            <h5>Goku</h5>
+            <h5>{calendaMovie.tenPhim}</h5>
           </div>
           <div className="cinema__input-group col-6">
             <form
@@ -59,7 +66,10 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
             >
               <div className="cinema-form-control">
                 <label htmlFor="">Hệ Thống Rạp:</label>
-                <select name="" id="" className="w-100">
+                <select name="" id="" className="w-100" 
+                onChange = {handleChangeCinema}
+                >
+                  <option value="">Hãy Chọn Rạp</option>
                   {cinema.map((item) => (
                     <option key={item.maHeThongRap} value={item.maHeThongRap}>
                       {item.tenHeThongRap}
@@ -68,7 +78,9 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
                 </select>
                 <label htmlFor="">Cụm Rạp:</label>
                 <select name="" id="" className="w-100">
+                
                   <option value=""></option>
+
                 </select>
                 <label htmlFor="">Ngày Chiếu Giờ Chiếu:</label>
                 <DatePicker

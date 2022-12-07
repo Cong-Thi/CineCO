@@ -23,10 +23,11 @@ const MovieAdmin = () => {
 
   const [show, setShow] = useState(false);
   const [showCinema, setShowCinema] = useState(false);
-  // const [calendaMovie, setCalendaMovie] = useState({
-  //   maPhim: "",
-  //   url: "",
-  // });
+  const [calendaMovie, setCalendaMovie] = useState({
+    maPhim: "",
+    tenPhim: "",
+    hinhAnh: "",
+  });
 
   const handleClose = async (tenPhim, soTrang) => {
     const data = await moviesManagementAPI.getMovies(tenPhim, soTrang);
@@ -77,13 +78,14 @@ const MovieAdmin = () => {
     setShow(true);
   };
 
-  // const handleShowCinema = (item) => {
-  //   setCalendaMovie({
-  //     maPhim: item.maPhim,
-  //     url: item.url,
-  //   });
-  //   setShowCinema(true);
-  // };
+  const handleShowCinema = (item) => {
+    setCalendaMovie({
+      maPhim : item.maPhim,
+      tenPhim: item.tenPhim,
+      hinhAnh: item.hinhAnh,
+    });
+    setShowCinema(true);
+  };
   const handleCloseCinema = () => {
     setShowCinema(false);
   };
@@ -164,12 +166,12 @@ const MovieAdmin = () => {
                   <Button
                     variant="outline-danger"
                     className="col-5 m-1"
-                    // onClick={() => handleShowCinema(item)}
+                    onClick={() => handleShowCinema(movie)}
                   >
                     <TbMovie />
                   </Button>
                   <CinemaModal
-                    // calendaMovie={calendaMovie}
+                    calendaMovie={calendaMovie}
                     show={showCinema}
                     handleClose={handleCloseCinema}
                   />

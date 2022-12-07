@@ -40,6 +40,13 @@ const moviesManagementAPI = {
   getCinema: () => {
     return fetcher.get("QuanLyRap/LayThongTinHeThongRap");
   },
+  getCinemaBranches: (maHeThongRap) => {
+    return fetcher.get("QuanLyRap/LayThongTinCumRapTheoHeThong",{
+      params:{
+        maHeThongRap: maHeThongRap,
+      }
+    });
+  }
 };
 
 export default moviesManagementAPI;
