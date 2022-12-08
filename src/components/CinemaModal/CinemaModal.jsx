@@ -10,9 +10,11 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
   const [cinema, setCinema] = useState([]);
   const [cinemaBranches, setCinemaBranches] = useState([]);
   const [cinemaSelected, setCinemaSelected] = useState("");
-  const [dateTimeValue, setDateTimeValue] = useState(new Date());
   const [cinemaBranchSelected, setCinemaBranchSelected] = useState("");
-
+  const [dateTimeValue, setDateTimeValue] = useState(new Date());
+  const [danhSachRap, setDanhSachRap] = useState([])
+  const [numCinemaSelected, setNumCinemaSelected] = useState("");
+  
   const {
     register,
     handleSubmit,
@@ -22,7 +24,7 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
       return {
         tenHeThongRap: "",
         tenCumRap: "",
-        dateTimeValue: "",
+        ngayChieuGioChieu: "",
         giaVe: "",
       };
     }, []),
@@ -45,14 +47,27 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
     }
   }, [cinemaSelected]);
 
+
   const handleChangeCinema = (e) => {
     setCinemaSelected(e.target.value);
   };
 
   const handleChangeCinemaBranch = (e) => {
     setCinemaBranchSelected(e.target.value);
-  };
+     if(cinemaBranchSelected !== ""){
 
+      setDanhSachRap(cinemaBranches.find((item) => item.maCumRap === cinemaBranchSelected).danhSachRap)
+    
+    }else{
+      alert("Nhập lại cụm rạp")
+      return;
+    }
+    
+  };
+  const handleChangeTenRap = (e) =>{
+    setNumCinemaSelected(e.target.value);
+
+  }
   useEffect(() => {
     (async () => {
       try {
@@ -63,7 +78,22 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
       }
     })();
   }, []);
-  const onSubmit = async (values) => {};
+
+
+  const onSubmit = async (values) => {
+    try {
+      const newValues = {
+        maPhim: calendaMovie.maPhim,
+        ngayChieuGioChieu: dateTimeValue,
+        maRap: numCinemaSelected,
+        giaVe: values.giaVe,
+      }
+      console.log(calendaMovie.maPhim,dateTimeValue,numCinemaSelected,values.giaVe,);
+      await moviesManagementAPI.taoLichChieu(newValues)
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Modal show={show} onHide={handleClose} size={"xl"}>
       <Modal.Header closeButton>
@@ -105,22 +135,45 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
                     </option>
                   ))}
                 </select>
+                <label htmlFor="">Số Rạp:</label>
+                <select
+                  name=""
+                  id=""
+                  className="w-100"
+                  onChange={handleChangeTenRap}
+                >
+                  {danhSachRap.map((item) => (
+                    <option key={item.maRap} value={item.maRap}>
+                      {item.tenRap}
+                    </option>
+                  ))}
+                </select>
                 <label className="w-100" htmlFor="">
                   Ngày Chiếu Giờ Chiếu:
                 </label>
                 <DateTimePicker
                   onChange={setDateTimeValue}
+                  
                   value={dateTimeValue}
                   format="dd-MM-yyyy hh:mm:ss"
                   locale="vi-VI"
                   minDate={new Date()}
+                    
+                  
                 />
 
                 <label className="w-100" htmlFor="">
                   Giá vé:
                 </label>
-                <input type="number" className="w-100" />
+                <input type="number" className="w-90" {...register("giaVe",{
+                  required: "Không được để trống",
+                
+                })} />
+                <span className="mx-2">VND</span>
               </div>
+              {errors.giaVe && (
+                <p className="errorMessage">{errors.giaVe.message}</p>
+              )}
             </form>
           </div>
         </div>
@@ -132,7 +185,7 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
         <Button
           variant="primary"
           type="submit"
-          // onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit(onSubmit)}
         >
           Tạo Lịch Chiếu
         </Button>

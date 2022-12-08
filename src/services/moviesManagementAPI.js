@@ -46,6 +46,9 @@ const moviesManagementAPI = {
         maHeThongRap: maHeThongRap,
       }
     });
+  },
+  taoLichChieu: (lichChieu) => {
+    return fetcher.post("QuanLyDatVe/TaoLichChieu", lichChieu)
   }
 };
 
