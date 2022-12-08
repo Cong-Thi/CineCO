@@ -1,21 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import authAPI from "../services/authAPI";
+import  authAPI  from "../services/authAPI";
 
 const initialState = {
     user: JSON.parse(localStorage.getItem("user")) || null,
-    loading: false,
-    error: null,
+    messageError: null,
     isLoading: false,
     isOpen: false,
     isOpenRight: false,
+
+    isSignIn : false,
+    isSignUp : false,
 };
 
 // signin action
 export const signin = createAsyncThunk(
     "auth/signin",
-    async (values) => {
+    async (user) => {
         try{
-            const data = await authAPI.signin(values);
+            const data = await authAPI.signin(user);
             // Lưu thông tin user xuống localStorage
             localStorage.setItem("user", JSON.stringify(data))
             return data;
@@ -25,11 +27,12 @@ export const signin = createAsyncThunk(
     }
 )
 
-export const signUp = createAsyncThunk(
+export const signup = createAsyncThunk(
     'auth/signup',
     async (user) => {
         try {
-            const {data} = await authAPI.signUp(user);
+            const {data} = await authAPI.signup(user);
+            console.log("data", data.content);
             return data.content;
         } catch (error) {
             throw(error);
@@ -56,6 +59,12 @@ const authSlice = createSlice({
         },
         close : (state) => {
             return {...state, isOpenRight: false}
+        },
+        setIsSignUp : (state) => {
+            return {...state, isSignUp : false};
+        }, 
+        clearError : (state) => {
+            return {...state, messageError : null}
         }
     },
     extraReducers: (builder) => {
@@ -71,18 +80,18 @@ const authSlice = createSlice({
             return {...state, loading: false, error: action.error.message};
         });
 
-        builder.addCase(signUp.pending, (state) => {
+        builder.addCase(signup.pending, (state) => {
             return {...state, isLoading: true};
         });
-        builder.addCase(signUp.fulfilled, (state, action) => {
-            return {...state, isLoading: false, myAcount: action.payload};
+        builder.addCase(signup.fulfilled, (state, action) => {
+            return {...state, isLoading: false, myAcount: action.payload, isSignUp: true};
         });
-        builder.addCase(signUp.rejected, (state, action) => {
+        builder.addCase(signup.rejected, (state, action) => {
             return {...state, isLoading: false, myAcount: action.error.message};
         });
     }
 });
 
-export const {loginShow, loginClose, logout, show, close} = authSlice.actions;
+export const {loginShow, loginClose, logout, show, close, setIsSignUp, clearError} = authSlice.actions;
 
 export default authSlice.reducer;

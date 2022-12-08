@@ -19,6 +19,7 @@ const Signin = () => {
     const onSubmit = (values) => {
         dispatch(signin(values));
     }
+
     if(user){
         return <Navigate to="/" replace/>
     }
@@ -43,22 +44,22 @@ const Signin = () => {
                         message:"Tài khoản 5-20 ký tự",
                     },
                 })}/>
-                <br/>
-                {errors.taiKhoan && <span>{errors.taiKhoan.message}</span>}
 
             </div>
+            {errors.taiKhoan && <span>{errors.taiKhoan.message}</span>}
             <div className='form-item'>
                 <label>Mật khẩu</label>
                 <input {...register("matKhau", {
                     required: true,
-                })}/>
-                <br/>
-                {errors.matKhau && <span>Mật khẩu không được để trống</span>}
+                })}/> 
             </div>
+            {errors.matKhau && <span>Mật khẩu không được để trống</span>}
             
+            <div className='form-button'>
             <button disabled={loading}>Đăng Nhập</button>
             <div>Chưa có tài khoản ? <Link to='/Signup'>Đăng ký ngay !</Link></div>
             {error && <p>{error}</p>}
+            </div>
         </form>
     </div>
   )
