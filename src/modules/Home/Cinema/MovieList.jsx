@@ -10,9 +10,8 @@ const MovieList = ({ cinema }) => {
   const { user } = useSelector((state) => state.auth);
   const handleClickMovieShowTime = (showtimeId) => {
     if (!user) {
-      alert("Bạn chưa đăng nhập", "Bạn có muốn quay lại để đăng nhập", () =>
-        navigate("/account/login")
-      );
+      alert("Bạn chưa đăng nhập");
+      navigate("/signin");
     } else {
       navigate(`ticket/${showtimeId}`);
     }
