@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import movieAPI from '../../../services/movieAPI'
+import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import { useNavigate } from "react-router-dom";
 import "./movieFilter.scss";
 
 const MovieFilter = () => {
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
   const [values, setValues] = useState({
     movies: [],
     movieIdSelected: "",
@@ -82,8 +85,15 @@ const MovieFilter = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate(`ticket/${values.showTimeId}`);
+    if(!user){
+      alert("Bạn chưa đăng nhập");
+      navigate("/signin")
+    }
+    else{
+      e.preventDefault();
+      navigate(`ticket/${values.showTimeId}`);
+    }
+    
   };
 
   return (
