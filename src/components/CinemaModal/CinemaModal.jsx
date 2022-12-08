@@ -1,28 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import moviesManagementAPI from "../../services/moviesManagementAPI";
-import locale from "antd/es/date-picker/locale/vi_VN";
-import { DatePicker } from "antd";
 import "./cinemaModal.scss";
+import DateTimePicker from "react-datetime-picker";
+import { useForm } from "react-hook-form";
+import { useMemo } from "react";
+
 const CinemaModal = ({ calendaMovie, show, handleClose }) => {
   const [cinema, setCinema] = useState([]);
+  const [cinemaBranches, setCinemaBranches] = useState([]);
   const [cinemaSelected, setCinemaSelected] = useState("");
-  // const { handleSubmit, control } = useForm({
-  //   defaultValues: {
-  //     maPhim: movie?.maPhim,
-  //     ngayChieuGioChieu: "",
-  //     maRap: "",
-  //     giaVe: 0,
-  //   },
-  //   mode: "onTouched",
-  // });
+  const [dateTimeValue, setDateTimeValue] = useState(new Date());
+  const [cinemaBranchSelected, setCinemaBranchSelected] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: useMemo(() => {
+      return {
+        tenHeThongRap: "",
+        tenCumRap: "",
+        dateTimeValue: "",
+        giaVe: "",
+      };
+    }, []),
+    mode: "onTouched",
+  });
 
   useEffect(() => {
     if (cinemaSelected) {
       (async () => {
         try {
-          const data = await moviesManagementAPI.getCinemaBranches(cinemaSelected);
-          setCinemaSelected(data);
+          const data = await moviesManagementAPI.getCinemaBranches(
+            cinemaSelected
+          );
+          setCinemaBranchSelected("");
+          setCinemaBranches(data);
         } catch (error) {
           console.log(error);
         }
@@ -31,10 +46,13 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
   }, [cinemaSelected]);
 
   const handleChangeCinema = (e) => {
-    console.log(e.target.value);
     setCinemaSelected(e.target.value);
-    console.log(cinemaSelected);
-  }
+  };
+
+  const handleChangeCinemaBranch = (e) => {
+    setCinemaBranchSelected(e.target.value);
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -45,6 +63,7 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
       }
     })();
   }, []);
+  const onSubmit = async (values) => {};
   return (
     <Modal show={show} onHide={handleClose} size={"xl"}>
       <Modal.Header closeButton>
@@ -53,21 +72,18 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
       <Modal.Body>
         <div className="row">
           <div className="poster col-6">
-            <img
-              src={calendaMovie.hinhAnh}
-              alt=""
-              width={400}
-            />
+            <img src={calendaMovie.hinhAnh} alt="" width={400} />
             <h5>{calendaMovie.tenPhim}</h5>
           </div>
           <div className="cinema__input-group col-6">
-            <form
-            // onSubmit={handleSubmit(onSubmit)}
-            >
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="cinema-form-control">
                 <label htmlFor="">Hệ Thống Rạp:</label>
-                <select name="" id="" className="w-100" 
-                onChange = {handleChangeCinema}
+                <select
+                  name=""
+                  id=""
+                  className="w-100"
+                  onChange={handleChangeCinema}
                 >
                   <option value="">Hãy Chọn Rạp</option>
                   {cinema.map((item) => (
@@ -77,23 +93,32 @@ const CinemaModal = ({ calendaMovie, show, handleClose }) => {
                   ))}
                 </select>
                 <label htmlFor="">Cụm Rạp:</label>
-                <select name="" id="" className="w-100">
-                
-                  <option value=""></option>
-
-                </select>
-                <label htmlFor="">Ngày Chiếu Giờ Chiếu:</label>
-                <DatePicker
-                  getPopupContainer={() =>
-                    document.getElementById("date-popup")
-                  }
-                  showTime
-                  format="DD/MM/YYYY HH:mm:ss"
-                  locale={locale}
+                <select
+                  name=""
+                  id=""
                   className="w-100"
+                  onChange={handleChangeCinemaBranch}
+                >
+                  {cinemaBranches.map((item) => (
+                    <option key={item.maCumRap} value={item.maCumRap}>
+                      {item.tenCumRap}
+                    </option>
+                  ))}
+                </select>
+                <label className="w-100" htmlFor="">
+                  Ngày Chiếu Giờ Chiếu:
+                </label>
+                <DateTimePicker
+                  onChange={setDateTimeValue}
+                  value={dateTimeValue}
+                  format="dd-MM-yyyy hh:mm:ss"
+                  locale="vi-VI"
+                  minDate={new Date()}
                 />
 
-                <label htmlFor="">Giá vé:</label>
+                <label className="w-100" htmlFor="">
+                  Giá vé:
+                </label>
                 <input type="number" className="w-100" />
               </div>
             </form>

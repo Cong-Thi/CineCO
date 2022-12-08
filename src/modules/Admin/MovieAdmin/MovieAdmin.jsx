@@ -20,6 +20,7 @@ const MovieAdmin = () => {
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [movieDetail, setMovieDetail] = useState({});
+  const [cinemaDetail, setCinemaDetail] = useState({});
 
   const [show, setShow] = useState(false);
   const [showCinema, setShowCinema] = useState(false);
@@ -80,7 +81,7 @@ const MovieAdmin = () => {
 
   const handleShowCinema = (item) => {
     setCalendaMovie({
-      maPhim : item.maPhim,
+      maPhim: item.maPhim,
       tenPhim: item.tenPhim,
       hinhAnh: item.hinhAnh,
     });
