@@ -39,6 +39,7 @@ export const routes = createBrowserRouter([
         ]
         },
         {path:"/ticket/:showtimeId", element:<Ticket/>},
+        {path:"*", element: <NotFound/>},
     ]
     },
 
@@ -52,7 +53,7 @@ export const routes = createBrowserRouter([
       },
     
     
-    {path:"*", element: <NotFound/>},
+    
 ])
 
 //export default routes
