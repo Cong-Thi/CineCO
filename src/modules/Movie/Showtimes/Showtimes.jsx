@@ -5,6 +5,7 @@ import movieAPI from "../../../services/movieAPI"
 import Cinema from "./Cinema";
 import "./ShowTime.scss";
 import CinemaTheater from '../../Home/Cinema/CinemaTheater';
+import { createStyles } from '@mantine/core';
 
 const Showtimes = ({ movieId }) => {
 
@@ -22,6 +23,8 @@ const Showtimes = ({ movieId }) => {
       }
     })()
   }, [])
+
+
 
   return (
     <div className='cinema-wrapper'>

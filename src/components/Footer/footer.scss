@@ -11,11 +11,12 @@
 
     .footer-wrap{
       display: flex;
-      justify-content:center;
+      justify-content:space-between;
       
   
       .footer-content{
-        padding: 0 50px;
+        padding: 0 10px;
+        width: 100%;
   
         .footer-title{
           font-size: 20px;

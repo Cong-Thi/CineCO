@@ -3,10 +3,10 @@
     background: url(../../../assets/img/film-bg.jpg) no-repeat center top;
     background-size: cover;
     -webkit-background-size: cover;
-    padding: 20px;
+    padding: 20px 0;
 
     .overview-content {
-        min-height: 600px;
+        display: flex;
 
         .overview-img {
             width: 40%;
@@ -17,30 +17,31 @@
             width: 60%;
             box-shadow: 10px 10px 10px 0 rgb(0 0 0 / 30%), 0 0 50px 0 rgb(0 0 0 / 40%) inset;
             background-color: #f18720;
-            padding: 30px 40px;
+            padding: 10px 10px;
 
             .name {
-                padding: 20px 0;
+                padding: 10px 0;
                 text-transform: uppercase;
                 color: white;
+                font-size: 18px;
             }
 
             .overview-list {
-                padding: 10px 0;
+                padding: 5px 0;
                 display: flex;
 
                 .list-title {
                     color: white;
-                    font-size: 18px;
+                    font-size: 14px;
                     font-weight: normal;
                     width: 25%;
                 }
 
                 .list-content {
-                    line-height: 18px;
+                    line-height: 14px;
                     background-color: #fff;
                     font-weight: normal;
-                    font-size: 20px;
+                    font-size: 14px;
                     color: #000;
                     border-radius: 20px 0 20px 0;
                     -webkit-border-radius: 20px 0 20px 0;
@@ -51,14 +52,14 @@
 
             .description {
                 color: white;
-                font-size: 18px;
+                font-size: 14px;
                 line-height: 30px;
             }
 
             .overview-btn {
                 display: flex;
                 justify-content: center;
-                padding: 20px 0;
+                padding: 10px 0;
 
                 .btn-trailer {
                     font-weight: normal;

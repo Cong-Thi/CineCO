@@ -4,17 +4,15 @@
   background-image: url(../../../assets/img/pattern.png);
   background-repeat: repeat-x, repeat;
   background-position: left top, center top;
-  background-size: contain, contain;
-  -webkit-background-size: contain, contain;
+  background-size: cover;
+  -webkit-background-size:cover;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .form-wrapper {
     display: flex;
-    width: 90%;
     text-align: center;
-    max-width: 1200px;
     padding: 10px;
     justify-content: center;
     align-items: center;
@@ -23,9 +21,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: row;
 
       .form-title {
-        padding: 0 20px;
+        
 
         p {
           font-size: 36px;
@@ -57,7 +56,7 @@
   
             &.form-name {
               border-radius: 0 0px 30px 30px;
-              width: 400px;
+              width: 80%;
             }
   
             &.form-theater {

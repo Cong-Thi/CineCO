@@ -18,7 +18,6 @@ const CinemaTheater = ({ cinemaId }) => {
     }, [])
 
     return (
-
         <Tabs defaultValue="BHD Star Cineplex - Bitexco" orientation="vertical">
             <div className='theater-content'>
                 <div className='theater-logo'>
@@ -29,7 +28,7 @@ const CinemaTheater = ({ cinemaId }) => {
                                     <Tabs.List>
                                         <Tabs.Tab value={cinema.tenCumRap} className='logo-item'>
                                             <h3>{cinema.tenCumRap}</h3>
-                                            <p>Địa chỉ: {cinema.diaChi}</p>
+                                            <p>{cinema.diaChi}</p>
                                         </Tabs.Tab>
                                     </Tabs.List>
                                 </div>
@@ -50,7 +49,6 @@ const CinemaTheater = ({ cinemaId }) => {
                 </div>
             </div>
         </Tabs>
-
     )
 }
 

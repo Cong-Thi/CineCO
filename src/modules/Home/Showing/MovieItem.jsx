@@ -66,7 +66,7 @@ function MovieItem({ movies }) {
 
   return (
     <div className='container-movie'>
-      <Carousel mx="auto" withIndicators slideSize="20%" align="start" slideGap="md" draggable="false" slidesToScroll={3}>
+      <Carousel mx="auto" withIndicators slideSize="auto" align="start" slideGap="md" draggable="false">
         {slides}
       </Carousel>
       <VideoModal trailer={trailer}

@@ -1,0 +1,96 @@
+@media screen and (max-width: 1200px) {
+  .profile {
+    padding: 50px 50px;
+  }
+
+  .css-1bi6ps5 {
+    width: 700px !important;
+  }
+
+  .history__item__info-item {
+    margin-left: 10px;
+  }
+
+  .history__item__info-item .field {
+    width: 90px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .profile__info {
+    display: block;
+  }
+
+  .css-1bi6ps5 {
+    width: 100% !important;
+  }
+
+  .css-79ws1d-MuiModal-root {
+    overflow: scroll;
+  }
+
+  .history {
+    display: block;
+  }
+  .history__item {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info__item {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .profile {
+    padding: 20px;
+  }
+  .history__item {
+    padding: 0;
+  }
+
+  .profile__info__item .field {
+    font-size: 14px;
+  }
+
+  .profile__info__item .content {
+    font-size: 13px;
+  }
+
+  .css-1bi6ps5 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+  }
+
+  .history__item__img {
+    width: 50px;
+  }
+  .history__item__wrapper {
+    height: 180px;
+    align-items: flex-start;
+  }
+
+  .history__item__info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .history__item__info-item .field {
+    width: auto;
+    margin-bottom: 0px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .history__item__info-item .content {
+    margin-left: 5px;
+    font-size: 12px;
+  }
+}

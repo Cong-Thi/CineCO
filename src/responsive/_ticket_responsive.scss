@@ -1,0 +1,107 @@
+@use "scss" as *;
+
+@media screen and (max-width: 1200px) {
+  .ticket__wrapper {
+    padding: 10px 50px 50px 50px;
+  }
+
+  .seat {
+    flex-wrap: wrap;
+  }
+
+  .seat__book {
+    width: 100%;
+  }
+
+  .seat__detail {
+    width: 100%;
+  }
+
+  .seat__detail .booking-footer .footer-btn .btn {
+    padding: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+  .header__wrap {
+    justify-content: space-between;
+  }
+
+  .ticket__wrapper {
+    padding: 20px 20px !important;
+  }
+
+  .ticket__title__info {
+    flex-direction: column;
+  }
+
+  .ticket__title__info-main {
+    margin-left: 0px;
+  }
+  .seat__description {
+    flex-wrap: wrap;
+  }
+  .seat__description .row {
+    width: 30%;
+  }
+  .seat__description > * ~ * {
+    margin: 0;
+    margin-top: 4px;
+  }
+  .ticket__title__info-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 80px;
+    }
+  }
+
+  .name-item {
+    width: 100%;
+    text-align: center;
+    color: $main-color !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .seat__description .row {
+    width: 50%;
+  }
+  .seat__list-range {
+    margin: 0;
+  }
+
+  .seat__list-range-item {
+    padding: 0;
+    padding: 6px 6px 6px 0px;
+  }
+  .seat__list-row-item .row {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ticket__title__info-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 80px;
+    }
+  }
+
+  .name-item {
+    width: 100%;
+    text-align: center;
+    color: $main-color !important;
+  }
+
+  .ticket__title {
+    padding: 20px 0;
+  }
+}

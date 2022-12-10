@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import moment from "moment/moment";
 import { useNavigate } from "react-router-dom";
 import "./movieFilter.scss";
+import "../../../responsive/home_responsive.scss";
 
 const MovieFilter = () => {
   const navigate = useNavigate();

@@ -1,23 +1,25 @@
 .header {
     background-image: linear-gradient(to right,#27001f,#4a0042,#27001f);
     padding: 20px 0px;
+    width: 100%;
+    position:sticky;
+    top: 0;
+    left: 0;
+    z-index: 99;
     
-    .mantine-10nsg3v{
-        display: flex;
-        justify-content:flex-end;
+    .container{
         align-items: center;
+        justify-content: space-between;
 
         .logo{
-            width: 15%;
+            padding-right: 20px;
         }
         .menu{
-            width: 70%;
             display: flex;
             justify-content:center;
             align-items: center;
             
-
-            .link__home{
+            .link-home{
                 height: 50px;
                 width: 50px;
                 background-color: #e00d7a;
@@ -75,13 +77,35 @@
                 }
             }
         }
+
+        .menu-toggle{
+            display: none;
+          }
         .account{
             display: flex;
-            background-color: #f18720;
-            border-radius: 30px;
-            padding: 10px;
-            width: 15%;
-            text-align: center;
+            flex-direction: row;
+
+            .account-button{
+                background-color: white;
+                padding: 10px;
+                border-radius: 20px;
+                margin-left: 4px;
+            }
+            
+            a{
+                color: #4a0042;
+            }
+        }
+        .account-item{
+            display: flex;
+            flex-direction: row;
+
+            .account-button{
+                background-color: white;
+                padding: 10px;
+                border-radius: 20px;
+                margin-left: 4px;
+            }
             
             a{
                 color: #4a0042;
@@ -90,4 +114,17 @@
     }
 
     
+}
+
+@media screen and (max-width: 1200px) {
+  
+}
+@media screen and (max-width: 992px) {
+  
+}
+@media screen and (max-width: 768px) {
+  
+}
+@media screen and (max-width: 567px) {
+  
 }

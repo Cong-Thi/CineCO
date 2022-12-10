@@ -1,3 +1,5 @@
+// 
+
 .cinema-wrapper{
     background-image: linear-gradient(to right, #27001f, #4a0042, #27001f);
     color: white;
@@ -6,6 +8,7 @@
     .cinema-container{
         width: 85%;
         margin: 0 auto;
+        overflow: hidden;
 
         .cinema-title{
             text-transform: uppercase;
@@ -17,17 +20,16 @@
         .cinema-content{
             display: flex;
             justify-content:flex-start;
-            min-width: 100%;
+            width: 100%;
             
             .cinema-logo{
                 background-color: #4a0042;
                 border-radius:  10px 0 0 10px ;
-                min-width: 10%;
             }
 
             .cinema-address{
-                padding: 0 20px;
-                min-width: 90%;
+                padding-left:  10px;
+                width: 100%;
             }
         }
     }     
@@ -39,9 +41,11 @@
 
     .theater-logo{
         background-color: #4a0042;
-        min-width: 30%;
+        width: 400px;
+        word-wrap: break-word;
 
         .logo-item{
+            width: 100%;
             h3{
                 color: #e00d7a;
                 font-size: 18px;
@@ -51,6 +55,7 @@
                 color: white;
                 font-size: 13px;
                 padding: 10px 0;
+                word-wrap: break-word;
             }
 
             &:hover h3{
@@ -65,6 +70,7 @@
 }
 
 .movie-wrapper{
+    width: 100%;
     padding: 0 20px;
     .movie-content{
         background-color: #4a0042;
@@ -89,6 +95,7 @@
                     text-transform: uppercase;
                     font-size: 16px;
                     font-weight: bold;
+                    
                 }
 
                 .showtime{
