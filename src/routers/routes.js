@@ -22,13 +22,13 @@ export const routes = createBrowserRouter([
         //Home
         {index: true, element: <Home/>, title:"Home"},
         // Movie
-        {path:"/movie/:movieId", element: <Movie/>, title:"Phim"},
+        {path:"/", title:"Phim"},
         // Lịch chiếu
-        {path:"/", element: <Movie/>, title:"Lịch Phim"},
+        {path:"/", title:"Lịch Phim"},
         // Tin tức
-        {path:"/", element: <Movie/>, title:"Tin Tức"},
+        {path:"/", title:"Tin Tức"},
         // Liên hệ
-        {path:"/", element: <Movie/>, title:"Liên Hệ"},
+        {path:"/", title:"Liên Hệ"},
         
         // Authentication
         {path: "",

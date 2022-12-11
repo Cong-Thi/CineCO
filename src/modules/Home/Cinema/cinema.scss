@@ -8,7 +8,6 @@
     .cinema-container{
         width: 85%;
         margin: 0 auto;
-        overflow: hidden;
 
         .cinema-title{
             text-transform: uppercase;
@@ -21,14 +20,15 @@
             display: flex;
             justify-content:flex-start;
             width: 100%;
+            flex-direction: column;
             
             .cinema-logo{
                 background-color: #4a0042;
-                border-radius:  10px 0 0 10px ;
+                border-radius:  10px ;
+                margin: 0 auto;
             }
 
             .cinema-address{
-                padding-left:  10px;
                 width: 100%;
             }
         }
@@ -38,14 +38,20 @@
 .theater-content{
     display: flex;
     justify-content: flex-start;
+    width: 100%;
+    flex-direction: column;
 
     .theater-logo{
         background-color: #4a0042;
-        width: 400px;
-        word-wrap: break-word;
+        width: 100%;
+        margin: 0 auto;
+        border-radius:  10px ;
 
         .logo-item{
             width: 100%;
+            padding: 10px;
+            text-align: center;
+
             h3{
                 color: #e00d7a;
                 font-size: 18px;
@@ -67,54 +73,57 @@
         }
         
     }
-}
 
-.movie-wrapper{
-    width: 100%;
-    padding: 0 20px;
-    .movie-content{
-        background-color: #4a0042;
-        border-radius: 0 10px 10px 0;
-        padding: 15px;
-        min-width: 70%;
-
-       .movie-item{
-            display: flex;
-
-            .movie-image{
-                width: 80px;
-                height: 120px;
-                border-radius: 10px;
-            }
-
-            .movie-showtime{
-                padding: 0 20px;
-
-                .movie-title{
-                    color: #f18720;
-                    text-transform: uppercase;
-                    font-size: 16px;
-                    font-weight: bold;
-                    
+    .movie-wrapper{
+        width: 100%;
+        .movie-content{
+            width: 100%;
+            margin-top: 40px;
+            background-color: #f18720;
+            border-radius:10px 10px 0 0;
+            padding: 15px;
+        
+    
+           .movie-item{
+                display: flex;
+                padding: 10px 0;
+    
+                .movie-image{
+                    width: 80px;
+                    height: 120px;
+                    border-radius: 10px;
                 }
-
-                .showtime{
-                    display: flex;
-                    .showtime-item{
-                        padding: 20px 10px;
-                        
-                        button{
-                            padding: 10px 20px;
-                            border-radius: 10px;
-                            border: none;
-                            cursor: pointer;
-                            font-size: 16px;
-                            font-weight: bold;
-                        }
+    
+                .movie-showtime{
+                    padding: 0 20px;
+    
+                    .movie-title{
+                        color: white;
+                        text-transform: uppercase;
+                        font-size: 16px;
+                        font-weight: bold;
                         
                     }
+    
+                    .showtime{
+                        display: flex;
+                        .showtime-item{
+                            padding: 10px;
+                            
+                            button{
+                                padding: 10px 20px;
+                                border-radius: 10px;
+                                border: none;
+                                cursor: pointer;
+                                font-size: 16px;
+                                font-weight: bold;
+                            }
+                            
+                        }
+                    }
                 }
-            }
-       } 
+           } 
+        }
     }
 }
+

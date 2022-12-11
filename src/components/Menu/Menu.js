@@ -27,11 +27,11 @@ const Menu = () => {
       <div className="menu-modal">
         <div className="menu-content">
               <ul>
-                <li><Link to="/movie/:movieId">Trang Chủ</Link></li>
-                <li><Link to="/movie/:movieId">Phim</Link></li>
-                <li><Link to="/movie/:movieId">Lịch Phim</Link></li>
-                <li><Link to="/movie/:movieId">Tin Tức</Link></li>
-                <li><Link to="/movie/:movieId">Liên Hệ</Link></li>
+                <li><Link to="/">Trang Chủ</Link></li>
+                <li><Link to="/">Phim</Link></li>
+                <li><Link to="/">Lịch Phim</Link></li>
+                <li><Link to="/">Tin Tức</Link></li>
+                <li><Link to="/">Liên Hệ</Link></li>
               </ul>
               <Nav className="account">
                 <Nav.Link className="account-button" href="/signin">Đăng Nhập</Nav.Link>

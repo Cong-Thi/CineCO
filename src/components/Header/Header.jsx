@@ -51,10 +51,10 @@ const Header = () => {
           <Link to="/" className="link-home bx bxs-home"></Link>
           <div className="nav-menu">
             <ul>
-              <li><Link to="/movie/:movieId">Phim</Link></li>
-              <li><Link to="/movie/:movieId">Lịch Phim</Link></li>
-              <li><Link to="/movie/:movieId">Tin Tức</Link></li>
-              <li><Link to="/movie/:movieId">Liên Hệ</Link></li>
+              <li><Link to="/">Phim</Link></li>
+              <li><Link to="/">Lịch Phim</Link></li>
+              <li><Link to="/">Tin Tức</Link></li>
+              <li><Link to="/">Liên Hệ</Link></li>
             </ul>
           </div>
         </div>

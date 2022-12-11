@@ -84,16 +84,11 @@
         .account{
             display: flex;
             flex-direction: row;
-
-            .account-button{
-                background-color: white;
-                padding: 10px;
-                border-radius: 20px;
-                margin-left: 4px;
-            }
+            padding: 0;
             
             a{
-                color: #4a0042;
+                color: white;
+                font-size: 14px;
             }
         }
         .account-item{

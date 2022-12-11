@@ -18,8 +18,6 @@
       }
     }
   }
-
-  
 }
 
 @media screen and (max-width: 768px) {
@@ -33,7 +31,10 @@
       width: 100% !important;
     }
     .seat-range{
-      margin-right: 5px !important;
+      margin-right: 15px !important;
+    }
+    .seat-item{
+      padding: 10px 0 !important;
     }
   }
 }
@@ -117,5 +118,19 @@
     }
   }
 
+  .cinema-logo{
+    
+    img{
+      width: 40px!important;
+    }
+
+    button{
+      padding: 3px 5px !important;
+    }
+}
+
+.showtime{
+  flex-direction: column;
+}
  
 }

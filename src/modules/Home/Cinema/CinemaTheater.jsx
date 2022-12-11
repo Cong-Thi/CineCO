@@ -18,22 +18,22 @@ const CinemaTheater = ({ cinemaId }) => {
     }, [])
 
     return (
-        <Tabs defaultValue="BHD Star Cineplex - Bitexco" orientation="vertical">
+        <Tabs defaultValue="">
             <div className='theater-content'>
                 <div className='theater-logo'>
-                    <ScrollArea style={{ height: 420 }}>
-                        {cinemas?.map((cinema) => (
-                            cinema.lstCumRap?.map((cinema, index) => (
-                                <div key={index} >
-                                    <Tabs.List>
+                    <ScrollArea style={{ height: 250 }}>
+                        <Tabs.List>
+                            {cinemas?.map((cinema) => (
+                                cinema.lstCumRap?.map((cinema, index) => (
+                                    <div key={index} style={{width:"100%"}}>
                                         <Tabs.Tab value={cinema.tenCumRap} className='logo-item'>
                                             <h3>{cinema.tenCumRap}</h3>
                                             <p>{cinema.diaChi}</p>
                                         </Tabs.Tab>
-                                    </Tabs.List>
-                                </div>
-                            ))
-                        ))}
+                                    </div>
+                                ))
+                            ))}
+                        </Tabs.List>
                     </ScrollArea>
                 </div>
                 <div className='movie-wrapper'>

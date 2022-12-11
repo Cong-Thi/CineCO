@@ -1,4 +1,7 @@
 
+.menu-icon{
+  color: white;
+}
 
 .menu-modal {
   width: 100%;
@@ -23,18 +26,20 @@
     justify-content: center;
     align-items: center;
 
-    .menu-content-item {
-      font-size: 18px;
-      font-weight: 600;
-      padding: 20px;
+    ul{
+      list-style: none;
+      padding-left: 0 !important;
 
-      &:hover {
+      li{
+        text-align: center;
+
+        a{
+          color: white;
+          font-size: 24px;
+
+        }
         
       }
-    }
-
-    .menu-content-item.active {
-      
     }
   }
 
@@ -43,6 +48,7 @@
     top: 10px;
     right: 10px;
     padding: 10px 20px;
+    color: #f18720;
   }
 }
 
