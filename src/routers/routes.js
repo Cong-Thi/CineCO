@@ -22,7 +22,7 @@ export const routes = createBrowserRouter([
         //Home
         {index: true, element: <Home/>, title:"Home"},
         // Movie
-        {path:"/", title:"Phim"},
+        {path: "/movie/:movieId", element: <Movie />, title:"Phim"},
         // Lịch chiếu
         {path:"/", title:"Lịch Phim"},
         // Tin tức

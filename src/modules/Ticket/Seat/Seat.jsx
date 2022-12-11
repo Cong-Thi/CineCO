@@ -106,11 +106,9 @@ const Seat = ({ seats }) => {
           // reset form
           await handleDeleteAllSeat();
           // notification
-          await <Notification color="teal" title = "Teal notification" >
-            This is teal notification with icon
-            </Notification >;
+          await 
 //chuyển hướng về trang chủ
-navigate("/profile");
+      navigate("/");
             } catch (error) {
   <Notification color="red">
     Bummer! Notification without title
@@ -121,7 +119,7 @@ navigate("/profile");
 alert(
   "Bạn có chấp nhận đặt vé không?",
   "Vé đã đặt không thể hoàn lại",
-  onSuccess
+  onSuccess()
 );
         }
       };
