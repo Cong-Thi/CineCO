@@ -30,18 +30,18 @@ const Showtimes = ({ movieId }) => {
     <div className='cinema-wrapper'>
       <div className='cinema-container'>
         <h3 className='cinema-title'>ĐẶT VÉ NGAY</h3>
-        <Tabs defaultValue="BHDStar" orientation="vertical">
+        <Tabs defaultValue="BHDStar" >
           <div className='cinema-content'>
             <div className='cinema-logo'>
+            <Tabs.List>
               {movies.heThongRapChieu?.map((cinema, index) => (
                 <div key={index}>
-                  <Tabs.List>
                     <Tabs.Tab value={cinema.maHeThongRap} >
                       <img className="logo-item" src={cinema.logo} alt="" width="50px" />
                     </Tabs.Tab>
-                  </Tabs.List>
                 </div>
               ))}
+              </Tabs.List>
             </div>
             <div className='cinema-address'>
               {movies.heThongRapChieu?.map((cinema, index) => (
