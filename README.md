@@ -12,3 +12,6 @@ https://cine-co-truongcongtrung2709.vercel.app/
 
 Link Youtube:
 https://www.youtube.com/watch?v=7aBQk29iV4s&ab_channel=ThiTrancong
+
+Link Admin: 
+https://cine-co-truongcongtrung2709.vercel.app/admin
